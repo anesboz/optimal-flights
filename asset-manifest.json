@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/optimal-flights/static/css/main.e6c13ad2.css",
-    "main.js": "/optimal-flights/static/js/main.b5a9d9aa.js",
+    "main.css": "/optimal-flights/static/css/main.77282c31.css",
+    "main.js": "/optimal-flights/static/js/main.4e048795.js",
     "static/media/optimal-flights-logo.jpg": "/optimal-flights/static/media/optimal-flights-logo.4560b7afc81cc1e5c7c6.jpg",
     "index.html": "/optimal-flights/index.html",
-    "main.e6c13ad2.css.map": "/optimal-flights/static/css/main.e6c13ad2.css.map",
-    "main.b5a9d9aa.js.map": "/optimal-flights/static/js/main.b5a9d9aa.js.map"
+    "main.77282c31.css.map": "/optimal-flights/static/css/main.77282c31.css.map",
+    "main.4e048795.js.map": "/optimal-flights/static/js/main.4e048795.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.b5a9d9aa.js"
+    "static/css/main.77282c31.css",
+    "static/js/main.4e048795.js"
   ]
 }
