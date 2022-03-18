@@ -1,5 +1,5 @@
-export const FETCH_TRANSAVIA = "FETCH_TRANSAVIA";
-export const FETCH_FAILED = "FETCH_FAILED";
-export const SET_FLIGHT = "SET_FLIGHT";
-export const LOADING = "LOADING";
-export const SET_VOL_ALLER = "SET_VOL_ALLER";
+export const LOADING = "LOADING"
+export const SET_QUERY = "SET_QUERY"
+export const SET_FLIGHTS = "SET_FLIGHTS"
+export const SET_FLIGHT1 = "SET_FLIGHT1"
+export const SET_FLIGHT2 = "SET_FLIGHT2"

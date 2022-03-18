@@ -1,6 +1,5 @@
 import { i18n } from "dateformat"
 
-export const myDateFormat = `yyyy-mm-dd`
 i18n.dayNames = [
   "Dim",
   "Lun",

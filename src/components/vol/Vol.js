@@ -1,16 +1,35 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react"
+import { connect } from "react-redux"
 
-function Vol(props) {
-  const { chosenAller } = props.data
+export default function Vol({ vol, color, title, resetFunction}) {
+  if (Object.keys(vol).length === 0) return null
+  const { date, totalPriceOnePassenger, time, href } = vol
   return (
-    <div>Vol</div>
+    <div style={{ color, padding: 20 }}>
+      {/* <b className="center">{title}</b> */}
+      <b>
+        {title} <span onClick={resetFunction}>🗑️</span>
+      </b>
+      <div className="apexcharts-tooltip-y-group">
+        <span className="apexcharts-tooltip-text-y-label">📅 Date: </span>
+        <span className="apexcharts-tooltip-text-y-value">{date}</span>
+      </div>
+      <div className="apexcharts-tooltip-y-group">
+        <span className="apexcharts-tooltip-text-y-label">🕑 Time: </span>
+        <span className="apexcharts-tooltip-text-y-value">{time}</span>
+      </div>
+      <div className="apexcharts-tooltip-y-group">
+        <span className="apexcharts-tooltip-text-y-label">💸 Price: </span>
+        <span className="apexcharts-tooltip-text-y-value">
+          {totalPriceOnePassenger} €
+        </span>
+      </div>
+      <div className="apexcharts-tooltip-y-group">
+        <span className="apexcharts-tooltip-text-y-label">✈️ Book: </span>
+        <a className="apexcharts-tooltip-text-y-value" href={href}>
+          transavia.com
+        </a>
+      </div>
+    </div>
   )
 }
-
-
-const mapStateToProps = (state) => ({
-  data: state.mainBranch,
-})
-
-export default connect(mapStateToProps)(Vol)
