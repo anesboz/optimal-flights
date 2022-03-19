@@ -16,12 +16,12 @@ export const getFlights = (query) => async (dispatch) => {
     companiesFetch[name](query)
   )
   Promise.all(arrayOfPromises).then((values) => {
-    console.log(values)
     const flights = values.map((val, i) => ({
       company: query.companies[i],
       outboundFlights: val[0],
       returnFlights: val[1],
     }))
+    console.log(`🚩 . flights`, flights)
     dispatch({ type: SET_FLIGHTS, payload: flights })
     dispatch({ type: LOADING, payload: false })
   }).catch(err=> console.log(err))
@@ -75,6 +75,5 @@ function Y_eq_Min(array) {
   const t = array.filter((n) => n)
   const min = Math.min(...t) ?? 0
   if (t.length < 1) min = 0
-  console.log(`🚩 . min`, min)
   return array.map((e) => min)
 }

@@ -6,6 +6,7 @@ import {
   SET_FLIGHT2,
 } from "actions/types"
 import axios from "axios"
+import { tmpFlights } from "variables/tmpData"
 
 const initalState = {
   loading: false,
@@ -15,13 +16,14 @@ const initalState = {
     originDepartureDate: new Date(),
     nbDays: 1,
   },
-  flights: [
-    {
-      company: ``,
-      outboundFlights: [],
-      returnFlights: [],
-    },
-  ],
+  // flights: [
+  //   {
+  //     company: ``,
+  //     outboundFlights: [],
+  //     returnFlights: [],
+  //   },
+  // ],
+  flights: tmpFlights,
   flight1: {},
   flight2: {},
 }
@@ -35,6 +37,7 @@ export default (state = initalState, action) => {
       return { ...state, query: { ...action.payload } }
 
     case SET_FLIGHTS:
+      console.log(`🚩 . action.payload `, action.payload )
       return { ...state, flights: action.payload }
     case SET_FLIGHT1:
       return { ...state, flight1: action.payload }

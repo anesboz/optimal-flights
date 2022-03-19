@@ -24,38 +24,60 @@ import { GREEN, RED } from "variables/contants"
 import store from "store"
 import { SET_FLIGHT1, SET_FLIGHT2 } from "actions/types"
 
+import ToggleButton from "@mui/material/ToggleButton"
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
+
 function Main(props) {
   var { query, flights, loading, flight1, flight2 } = props.mainBranch
+  const [alignment, setAlignment] = useState("bande")
   const [series, setSeries] = useState([])
   const [options, setOptions] = useState({})
   const [dataLabelState, setDataLabelState] = useState(true)
+  const [allerState, setAllerState] = useState(true)
+  const [retourState, setRetourState] = useState(false)
+  const [weekendState, setweekendState] = useState(true)
   useEffect(() => {
+    // series
     const arr = []
     flights.map((flight) => {
-      arr.push({
-        name: `Aller ${query.origin} -> ${query.destination} (${flight.company})`,
-        data: getY(flight.outboundFlights),
-      })
-      arr.push({
-        name: `Retour ${query.destination} -> ${query.origin} (${flight.company})`,
-        data: getY(flight.returnFlights),
-      })
+      if (allerState) {
+        arr.push({
+          name: `Aller ${query.origin} -> ${query.destination} (${flight.company})`,
+          data: getY(flight.outboundFlights),
+        })
+      }
+      if (retourState) {
+        arr.push({
+          name: `Retour ${query.destination} -> ${query.origin} (${flight.company})`,
+          data: getY(flight.returnFlights),
+        })
+      }
     })
     setSeries(arr)
-  }, [loading])
-
-  useEffect(() => {
-    const a = getNDays(query.originDepartureDate, query.nbDays).map((e) => e)
+    // options
     setOptions(
       createOptions({
+        series,
         flights,
-        xaxis_categories: a,
-        xaxis_title_text: `Jours`,
-        yaxis_title_text: `Prix`,
         dataLabels_enabled: dataLabelState,
+        flight1,
+        flight2,
+        allerState,
+        retourState,
+        weekendState,
+        alignment,
       })
     )
-  }, [loading, dataLabelState])
+  }, [
+    loading,
+    dataLabelState,
+    allerState,
+    retourState,
+    weekendState,
+    alignment,
+    flight1,
+    flight2,
+  ])
 
   return (
     <Fragment>
@@ -75,8 +97,64 @@ function Main(props) {
             />
           </FormGroup>
         </Grid>
+        <Grid item marginLeft={3}>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={allerState}
+                  onChange={(event) => setAllerState(event.target.checked)}
+                />
+              }
+              label="Aller"
+            />
+          </FormGroup>
+        </Grid>
+        <Grid item marginLeft={3}>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={retourState}
+                  onChange={(event) => setRetourState(event.target.checked)}
+                />
+              }
+              label="Retour"
+            />
+          </FormGroup>
+        </Grid>
+        <Grid item marginLeft={3}>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={weekendState}
+                  onChange={(event) => setweekendState(event.target.checked)}
+                />
+              }
+              label="Weekends"
+            />
+          </FormGroup>
+        </Grid>
+        <Grid item marginLeft={3}>
+          Range (cheapest) {"  "}
+          <ToggleButtonGroup
+            value={alignment}
+            exclusive
+            onChange={(_, newAlignment) => setAlignment(newAlignment)}
+            aria-label="text alignment"
+            size="small"
+          >
+            <ToggleButton value="lines" aria-label="left aligned">
+              Lines
+            </ToggleButton>
+            <ToggleButton value="bande" aria-label="centered">
+              Bande
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Grid>
       </Grid>
-      <Grid container spacing={2} paddingX={1}>
+      <Grid container spacing={2}>
         <Grid item mob={12}>
           <ReactApexChart
             options={options}
@@ -91,7 +169,7 @@ function Main(props) {
           {Object.keys(flight1).length === 0 ||
           Object.keys(flight2).length === 0 ? null : (
             <div className="center">
-             Total de
+              Total de
               <b style={{ margin: `0 5px` }}>
                 {" "}
                 {flight1.totalPriceOnePassenger +

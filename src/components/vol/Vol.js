@@ -26,7 +26,7 @@ export default function Vol({ vol, color, title, resetFunction}) {
       </div>
       <div className="apexcharts-tooltip-y-group">
         <span className="apexcharts-tooltip-text-y-label">✈️ Book: </span>
-        <a className="apexcharts-tooltip-text-y-value" href={href}>
+        <a className="apexcharts-tooltip-text-y-value" href={href} target="_blank">
           transavia.com
         </a>
       </div>

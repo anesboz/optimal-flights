@@ -32,8 +32,8 @@ export async function getPricesPeriod(query, wayBack = false) {
             new Date(vol.outboundFlight.arrivalDateTime),
             `HH:MM`
           )
-          o.date = dateformat(new Date(date), `yyyy-mm-dd ddd`)
-          o.time = start + ` -> ` + end
+          o.date = dateformat(new Date(date), `ddd yyyy-mm-dd`)
+          o.time = start + `  → ` + end
           o.totalPriceOnePassenger = vol.pricingInfoSum.totalPriceOnePassenger
           o.href = vol.deeplink.href
           o.departureDateTime = vol.outboundFlight.departureDateTime

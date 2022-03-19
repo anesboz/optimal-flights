@@ -17,9 +17,9 @@ import { LoadingButton } from "@mui/lab"
 function InputsBar(props) {
   const loading = props.loading
   const [origin, setOrigin] = useState(`ORY`)
-  const [destination, setDestination] = useState(`AMS`)
+  const [destination, setDestination] = useState(`ALG`)
   const [originDepartureDate, setOriginDepartureDate] = useState(new Date())
-  const [nbDays, setNbDays] = useState(4)
+  const [nbDays, setNbDays] = useState(30)
   const [companies, setCompanies] = useState([`transavia`])
   const query = {
     origin,
