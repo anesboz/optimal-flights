@@ -76,6 +76,7 @@ function InputsBar(props) {
           }}
           required
           autoCapitalize="true"
+          inputProps={{ min: "0", step: "10" }}
         />
       </Grid>
       <Grid item mob={8} lap={4}>

@@ -78,6 +78,7 @@ export async function getPricesPeriod(query, wayBack = false) {
 export function getPrices(origin, destination, originDepartureDate) {
   originDepartureDate = dateformat(originDepartureDate, `yyyymmdd`)
   const url = `https://api.transavia.com/v1/flightoffers/?origin=${origin}&destination=${destination}&originDepartureDate=${originDepartureDate}`
+  console.log(`🚩 . url`, url)
   return axios({
     method: "get",
     url: url,

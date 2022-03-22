@@ -24,7 +24,7 @@ function getIntervalDates(flights) {
 
 function getWeekEndsAnnotations(interval) {
   const [start, end] = interval
-  const color = "#0000003b"
+  const color = "#00000066"
   const annotations = []
   start.setHours(0, 0, 0, 0)
   let date = start
@@ -73,19 +73,30 @@ function getSelectedFlightsAnnotations(flight1, flight2) {
       },
       orientation: "horizontal",
       text: text,
-      offsetX: -33,
-      offsetY: 6,
+      offsetX: 133,
+      offsetY: 16,
     },
   })
   var rv = [obj(flight1.departureDateTime), obj(flight2.departureDateTime)]
 
   if (flight1.departureDateTime != null && flight2.departureDateTime != null) {
-    let tmp = obj(flight1.departureDateTime)
+    let tmp = obj(flight1.departureDateTime, text(flight1, flight2))
     tmp.x2 = new Date(flight2.departureDateTime).getTime()
     rv = [tmp]
   }
   console.log(`🚩 . rv`, rv)
   return rv
+}
+
+function text(flight1, flight2) {
+  return `Total de ${
+    flight1.totalPriceOnePassenger + flight2.totalPriceOnePassenger
+  } €  pour ${Math.ceil(
+    Math.abs(
+      new Date(flight2.arrivalDateTime) - new Date(flight1.departureDateTime)
+    ) /
+      (1000 * 60 * 60 * 24)
+  )} jours`
 }
 
 function getMin_MoyAnnotations(array, color, alignment) {
@@ -232,6 +243,7 @@ export const createOptions = ({
       },
     },
     legend: {
+      show: false,
       position: "top",
       horizontalAlign: "center",
     },
@@ -254,7 +266,8 @@ export const createOptions = ({
       },
     },
     markers: {
-      colors: [`transparent`],
+      colors: [allerState ? GREEN : RED, RED],
+      colors: `transparent`,
       size: 8,
       strokeColors: `transparent`,
       discrete: discrete,
@@ -381,7 +394,10 @@ export const createOptions = ({
     },
   }
 }
-
+/**
+ * fonction qui fait un truc 
+ * @param  {string} obj
+ */
 function myTooltip(obj) {
   const { date, totalPriceOnePassenger, time } = obj
   return (

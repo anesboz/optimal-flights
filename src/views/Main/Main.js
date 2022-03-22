@@ -137,7 +137,7 @@ function Main(props) {
           </FormGroup>
         </Grid>
         <Grid item marginLeft={3}>
-          Range (cheapest) {"  "}
+          Range (cheapest) {"    "}
           <ToggleButtonGroup
             value={alignment}
             exclusive
@@ -153,6 +153,19 @@ function Main(props) {
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
+        <Grid item marginLeft={3}>
+          <Button
+            fullWidth={true}
+            // variant="contained"
+            onClick={() => {
+              store.dispatch({ type: SET_FLIGHT1, payload: {} })
+              store.dispatch({ type: SET_FLIGHT2, payload: {} })
+            }}
+            loading={false}
+          >
+            RESET
+          </Button>
+        </Grid>
       </Grid>
       <Grid container spacing={2}>
         <Grid item mob={12}>
@@ -165,7 +178,7 @@ function Main(props) {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item mob={12}>
+        {/* <Grid item mob={12}>
           {Object.keys(flight1).length === 0 ||
           Object.keys(flight2).length === 0 ? null : (
             <div className="center">
@@ -190,7 +203,7 @@ function Main(props) {
               </b>
             </div>
           )}
-        </Grid>
+        </Grid> */}
         <Grid item mob={6}>
           <Vol
             title="Vol Aller"

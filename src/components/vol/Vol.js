@@ -1,4 +1,5 @@
 import React from "react"
+import dateformat from "dateformat"
 import { connect } from "react-redux"
 
 export default function Vol({ vol, color, title, resetFunction}) {
@@ -12,7 +13,9 @@ export default function Vol({ vol, color, title, resetFunction}) {
       </b>
       <div className="apexcharts-tooltip-y-group">
         <span className="apexcharts-tooltip-text-y-label">📅 Date: </span>
-        <span className="apexcharts-tooltip-text-y-value">{date}</span>
+        <span className="apexcharts-tooltip-text-y-value">
+          {dateformat(date, `dddd dd mmmm yyyy`)}
+        </span>
       </div>
       <div className="apexcharts-tooltip-y-group">
         <span className="apexcharts-tooltip-text-y-label">🕑 Time: </span>
@@ -26,7 +29,11 @@ export default function Vol({ vol, color, title, resetFunction}) {
       </div>
       <div className="apexcharts-tooltip-y-group">
         <span className="apexcharts-tooltip-text-y-label">✈️ Book: </span>
-        <a className="apexcharts-tooltip-text-y-value" href={href} target="_blank">
+        <a
+          className="apexcharts-tooltip-text-y-value"
+          href={href}
+          target="_blank"
+        >
           transavia.com
         </a>
       </div>
