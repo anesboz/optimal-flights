@@ -1,7 +1,6 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react"
 import { createOptions } from "utils/linesOptions"
 import Grid from "@mui/material/Grid"
-import { tmpALLER, tmpREOUR } from "variables/tmpData"
 import TextField from "@mui/material/TextField"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
 import MobileDatePicker from "@mui/lab/MobileDatePicker"
@@ -15,10 +14,9 @@ import {
   Switch,
 } from "@mui/material"
 import InputsBar from "components/InputsBar/InputsBar"
-import { getX, getY } from "./mainTools"
+import { getY } from "./mainTools"
 import { connect } from "react-redux"
 import Vol from "components/vol/Vol"
-import { getNDays } from "utils/timeManager"
 import ReactApexChart from "react-apexcharts"
 import { GREEN, RED } from "variables/contants"
 import store from "store"
@@ -37,6 +35,7 @@ function Main(props) {
   const [retourState, setRetourState] = useState(false)
   const [weekendState, setweekendState] = useState(true)
   useEffect(() => {
+    if (flights.length === 0) return
     // series
     const arr = []
     flights.map((flight) => {
@@ -178,32 +177,6 @@ function Main(props) {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        {/* <Grid item mob={12}>
-          {Object.keys(flight1).length === 0 ||
-          Object.keys(flight2).length === 0 ? null : (
-            <div className="center">
-              Total de
-              <b style={{ margin: `0 5px` }}>
-                {" "}
-                {flight1.totalPriceOnePassenger +
-                  flight2.totalPriceOnePassenger}{" "}
-                €{" "}
-              </b>
-              pour
-              <b style={{ margin: `0 5px` }}>
-                {" "}
-                {Math.ceil(
-                  Math.abs(
-                    new Date(flight2.arrivalDateTime) -
-                      new Date(flight1.departureDateTime)
-                  ) /
-                    (1000 * 60 * 60 * 24)
-                )}{" "}
-                jours
-              </b>
-            </div>
-          )}
-        </Grid> */}
         <Grid item mob={6}>
           <Vol
             title="Vol Aller"

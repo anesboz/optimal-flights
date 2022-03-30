@@ -17,7 +17,7 @@ import { LoadingButton } from "@mui/lab"
 function InputsBar(props) {
   const loading = props.loading
   const [origin, setOrigin] = useState(`ORY`)
-  const [destination, setDestination] = useState(`ALG`)
+  const [destination, setDestination] = useState()
   const [originDepartureDate, setOriginDepartureDate] = useState(new Date())
   const [nbDays, setNbDays] = useState(30)
   const [companies, setCompanies] = useState([`transavia`])
@@ -33,7 +33,7 @@ function InputsBar(props) {
     <Grid container spacing={2} padding={3}>
       <Grid item mob={4} lap={2}>
         <TextField
-          label="De"
+          label="Origin"
           value={origin}
           required
           error={origin === ""}
@@ -45,7 +45,8 @@ function InputsBar(props) {
       </Grid>
       <Grid item mob={4} lap={2}>
         <TextField
-          label="Vers"
+          label="Destination"
+          placeholder="OPO"
           required
           value={destination}
           error={destination === ""}

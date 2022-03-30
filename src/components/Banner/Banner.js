@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import appLogo from "assets/images/optimal-flights-logo.jpg"
 
 export default function Banner() {
@@ -11,6 +11,7 @@ export default function Banner() {
         justifyContent: `center`,
         backgroundColor: `#34495e`,
       }}
+      onClick={() => window.location.reload(false)}
     >
       <h2
         style={{
