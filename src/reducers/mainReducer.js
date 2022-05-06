@@ -5,7 +5,6 @@ import {
   SET_FLIGHT1,
   SET_FLIGHT2,
 } from "actions/types"
-import axios from "axios"
 
 const initalState = {
   loading: false,

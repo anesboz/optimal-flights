@@ -1,13 +1,8 @@
-import React, { Fragment, useCallback, useEffect, useState } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import { createOptions } from "utils/linesOptions"
 import Grid from "@mui/material/Grid"
-import TextField from "@mui/material/TextField"
-import LocalizationProvider from "@mui/lab/LocalizationProvider"
-import MobileDatePicker from "@mui/lab/MobileDatePicker"
 import {
-  Box,
   Button,
-  Checkbox,
   FormControlLabel,
   FormGroup,
   LinearProgress,
@@ -160,7 +155,6 @@ function Main(props) {
               store.dispatch({ type: SET_FLIGHT1, payload: {} })
               store.dispatch({ type: SET_FLIGHT2, payload: {} })
             }}
-            loading={false}
           >
             RESET
           </Button>

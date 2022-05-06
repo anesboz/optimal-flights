@@ -17,3 +17,9 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+
+.center-y {
+  display: flex;
+  align-items: center;
+}

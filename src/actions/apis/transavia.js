@@ -52,24 +52,6 @@ export async function getPricesPeriod(query, wayBack = false) {
       ])
     }
     date = getNextDay(date)
-    // const formatedDate = dateformat(new Date(date), `yyyy-mm-dd ddd`)
-    // if (rv.length > 0) {
-    //   rv.map((vol) =>
-    //     results.push({
-    //       date: formatedDate,
-    //       ...vol,
-    //     })
-    //   )
-    // } else {
-    //   results.push({
-    //     date: formatedDate,
-    //     horaire: null,
-    //     prix: null,
-    //     href: null,
-    //   })
-    // }
-    // results.push(rv)
-
     i++
   }
   return [].concat.apply([], results)
@@ -84,34 +66,4 @@ export function getPrices(origin, destination, originDepartureDate) {
     url: url,
     headers: { apiKey: API_KEY },
   })
-  // .then((res) => {
-  //   let start, end, horaire, prix, href
-  //   let o = { horaire, prix, href }
-  //   if (!res.data) return resolve(o)
-  //   resolve(
-  //     res.data.flightOffer.map((vol) => {
-  //       const o = {}
-  //       start = dateformat(
-  //         new Date(vol.outboundFlight.departureDateTime),
-  //         `HH:MM`
-  //       )
-  //       end = dateformat(
-  //         new Date(vol.outboundFlight.arrivalDateTime),
-  //         `HH:MM`
-  //       )
-  //       o.horaire = start + ` -> ` + end
-  //       o.prix = vol.pricingInfoSum.totalPriceOnePassenger
-  //       o.href = vol.deeplink.href
-  //       return o
-  //     })
-  //   )
-  // })
-  // .catch((err) => {
-  //   try {
-  //     console.log(err.response.status + ` ` + err.response.statusText)
-  //   } catch (error) {
-  //     console.log(err)
-  //   }
-  //   resolve([])
-  // })
 }

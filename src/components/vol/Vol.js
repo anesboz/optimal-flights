@@ -1,13 +1,11 @@
 import React from "react"
 import dateformat from "dateformat"
-import { connect } from "react-redux"
 
 export default function Vol({ vol, color, title, resetFunction}) {
   if (Object.keys(vol).length === 0) return null
   const { date, totalPriceOnePassenger, time, href } = vol
   return (
     <div style={{ color, padding: 20 }}>
-      {/* <b className="center">{title}</b> */}
       <b>
         {title} <span onClick={resetFunction}>🗑️</span>
       </b>
@@ -31,8 +29,8 @@ export default function Vol({ vol, color, title, resetFunction}) {
         <span className="apexcharts-tooltip-text-y-label">✈️ Book: </span>
         <a
           className="apexcharts-tooltip-text-y-value"
-          href={href}
-          target="_blank"
+          href={href.replace('nl-NL', 'fr-Fr')}
+          target="_blank" rel="noreferrer"
         >
           transavia.com
         </a>
